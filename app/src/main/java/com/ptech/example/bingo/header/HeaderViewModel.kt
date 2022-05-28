@@ -24,7 +24,7 @@ class HeaderViewModel @Inject constructor(private val bingoEventManager: BingoEv
             .subscribeOn(Schedulers.io())
             .subscribe {
                 Log.d(TAG, "after 5 second")
-                currentBingoNumber.set(Random.nextInt(100).toString())//0 -99
+                currentBingoNumber.set(it?.toString())//0 -99
             }
     }
 

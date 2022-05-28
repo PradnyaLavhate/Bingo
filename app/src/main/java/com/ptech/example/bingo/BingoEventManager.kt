@@ -4,11 +4,14 @@ import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.random.Random
+
 @Singleton
 class BingoEventManager @Inject constructor(){
     private val bingoTimer: Long = 5
 
-     val eventPublisher: Observable<Long> = Observable
-            .intervalRange(0L, 100L, 0, bingoTimer, TimeUnit.SECONDS)
+    val eventPublisher: Observable<Long> = Observable
+        .intervalRange(0L, 100L, 0, bingoTimer, TimeUnit.SECONDS)
+        .map { Random.nextLong(100) }
 }
 
