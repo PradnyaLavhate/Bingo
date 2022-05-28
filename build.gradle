@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+
+    ext.gradlePlugin = '4.2.1'
+    ext.kotlinVersion = '1.5.10'
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradlePlugin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext{
+    //SDK Tools
+    minSdkVersion = 21
+    targetSdkVersion = 30
+    compileSdkVersion = 30
+
+    //Android x dependencies
+    androidXCore = '1.6.0'
+    androidXAppCompat = '1.3.1'
+    androidXMaterial = '1.4.0'
+    androidXConstrainLayout = '2.1.1'
+
+    //Testing
+    junitVersion = '4.13.1'
+    androidXTestExtKotlinRunnerVersion = '1.1.3'
+    espressoVersion = '3.4.0'
+    mockitoVersion = '1.10.0'
+
+    //rx dependencies
+    rxJava = '2.x.x'
+    rxAndroid = '2.1.1'
+
+    //dagger dependency injection for java and android
+    dagger = '2.41'
+    lottieVersion = "3.4.0"
+
+}
