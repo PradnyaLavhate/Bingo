@@ -31,6 +31,7 @@ class HeaderFragment : Fragment() {
         val dataBinding: ViewDataBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_header, container, false)
         dataBinding.lifecycleOwner = this
+        lifecycle.addObserver(viewModel)
         (dataBinding as FragmentHeaderBinding).viewModel = viewModel
         return dataBinding.root
     }

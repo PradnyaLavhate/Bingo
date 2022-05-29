@@ -7,6 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import com.ptech.example.bingo.BingoEventManager
 import com.ptech.example.bingo.adapter.BingoChartAdapter
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -18,6 +19,8 @@ class BingoChartViewModel @Inject constructor(
 
     private val TAG: String = "BingoChart"
     var bingoChart: BingoChartData = bingoChartFactory.newInstance()
+
+    private val compositeDisposable = CompositeDisposable()
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -31,13 +34,14 @@ class BingoChartViewModel @Inject constructor(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun listenToBingoFlow(){
-        val disposable = bingoEventManager
-            .eventPublisher
+        Log.d(TAG,"BingoChartViewModel  bingoEventManager $bingoEventManager")
+        bingoEventManager
+            .getEventPublisher()
             .subscribeOn(Schedulers.io())
             .subscribe {
                 Log.d(TAG,"listenToBingoFlow::$it")
                 updateBingoChartAdapter(it)
-            }
+            }.let(compositeDisposable::add)
     }
 
     private fun updateBingoChartAdapter(currentBingo : Long){
@@ -46,6 +50,11 @@ class BingoChartViewModel @Inject constructor(
        }?.let {
          it.isElementCanceled.set(true)
        }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onDestroy(){
+        compositeDisposable.dispose()
     }
 }
 
