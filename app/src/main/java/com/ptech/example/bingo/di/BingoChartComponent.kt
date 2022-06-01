@@ -3,9 +3,9 @@ package com.ptech.example.bingo.di
 import com.ptech.example.bingo.bingochart.BingoChartFragment
 import com.ptech.example.bingo.header.HeaderFragment
 import dagger.Component
-import javax.inject.Singleton
 
-@Singleton
+
+@BingoScope
 @Component(modules = [BingoChartModule::class])
 interface BingoChartComponent {
 

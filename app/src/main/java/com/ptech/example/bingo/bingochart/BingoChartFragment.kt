@@ -1,16 +1,15 @@
 package com.ptech.example.bingo.bingochart
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ObservableInt
 import com.ptech.example.bingo.R
 import com.ptech.example.bingo.databinding.FragmentBingoChartBinding
-import com.ptech.example.bingo.di.DaggerBingoChartComponent
+import com.ptech.example.bingo.di.AppComponent
 import javax.inject.Inject
 
 
@@ -25,11 +24,10 @@ class BingoChartFragment : Fragment() {
     @Inject
     lateinit var viewModel: BingoChartViewModel
 
-    init {
-        DaggerBingoChartComponent
-            .builder()
-            .build()
-            .injectFor(this)
+    private fun initializeDependencies() {
+        this.context
+            ?.let { AppComponent.getApplication(it).component }
+            ?.injectFor(this)
     }
 
     override fun onCreateView(
@@ -47,6 +45,11 @@ class BingoChartFragment : Fragment() {
         lifecycle.addObserver(viewModel)
         dataBinding.bingoChartViewModel = viewModel
         return dataBinding.root
+    }
+
+    override fun onAttach(context: Context) {
+        initializeDependencies()
+        super.onAttach(context)
     }
 
 }

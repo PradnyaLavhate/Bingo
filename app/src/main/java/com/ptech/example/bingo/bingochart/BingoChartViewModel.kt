@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import com.ptech.example.bingo.BingoEventManager
+import com.ptech.example.bingo.util.BingoEventManager
 import com.ptech.example.bingo.adapter.BingoChartAdapter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

@@ -1,5 +1,6 @@
 package com.ptech.example.bingo.header
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.ptech.example.bingo.R
 import com.ptech.example.bingo.databinding.FragmentHeaderBinding
-import com.ptech.example.bingo.di.DaggerBingoChartComponent
+import com.ptech.example.bingo.di.AppComponent
 import javax.inject.Inject
 
 class HeaderFragment : Fragment() {
@@ -17,11 +18,10 @@ class HeaderFragment : Fragment() {
     @Inject
     lateinit var viewModel: HeaderViewModel
 
-    init {
-        DaggerBingoChartComponent
-            .builder()
-            .build()
-            .injectDataFor(this)
+    private fun initializeDependencies() {
+        this.context
+            ?.let { AppComponent.getApplication(it).component }
+            ?.injectDataFor(this)
     }
 
     override fun onCreateView(
@@ -34,6 +34,12 @@ class HeaderFragment : Fragment() {
         lifecycle.addObserver(viewModel)
         (dataBinding as FragmentHeaderBinding).viewModel = viewModel
         return dataBinding.root
+    }
+
+
+    override fun onAttach(context: Context) {
+        initializeDependencies()
+        super.onAttach(context)
     }
 
 }
