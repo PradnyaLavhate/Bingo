@@ -28,8 +28,12 @@ class HeaderViewModel @Inject constructor(private val bingoEventManager: BingoEv
                 Log.d(TAG, "after 5 second $it")
                 currentBingoNumber.set(it?.toString())//0 -99
             }.let(disposable::add)
+
     }
 
+    fun startBingoEvents(){
+        bingoEventManager.startEvents()?.let(disposable::add)
+    }
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume(){
         Log.d(TAG,"HeaderViewModel bingoEventManager $bingoEventManager")

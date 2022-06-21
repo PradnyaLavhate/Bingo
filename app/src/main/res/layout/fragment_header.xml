@@ -18,30 +18,32 @@
         android:layout_marginEnd="@dimen/header_horizontal_margin"
         tools:context=".header.HeaderFragment">
 
-
-        <!-- TODO: Update blank fragment layout -->
-<!--        <com.airbnb.lottie.LottieAnimationView-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:layout_width="match_parent"-->
-<!--            app:lottie_rawRes="@raw/countdown_timer"-->
-<!--            app:lottie_autoPlay="true"-->
-<!--            app:lottie_loop="true"-->
-<!--            android:layout_height="wrap_content"/>-->
         <TextView
-            tectSize="@dimen/textview_timer_size"
+            android:id="@+id/text_bingo_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/textview_header_vertical_margin"
             android:padding="@dimen/tv_header_timer_padding"
             android:text="@{viewModel.currentBingoNumber}"
-            tools:text="80"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="80" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.startBingoEvents()}"
+            android:text="Start"
+            android:theme="@style/Widget.AppCompat.Button.Colored"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_bingo_event" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

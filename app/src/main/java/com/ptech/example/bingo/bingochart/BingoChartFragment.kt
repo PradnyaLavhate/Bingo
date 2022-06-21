@@ -39,8 +39,7 @@ class BingoChartFragment : Fragment() {
                 inflater,
                 R.layout.fragment_bingo_chart,
                 container,
-                false
-            )
+                false)
         dataBinding.lifecycleOwner = this
         lifecycle.addObserver(viewModel)
         dataBinding.bingoChartViewModel = viewModel
