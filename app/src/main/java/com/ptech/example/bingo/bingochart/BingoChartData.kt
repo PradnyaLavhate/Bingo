@@ -1,18 +1,19 @@
 package com.ptech.example.bingo.bingochart
 
-import android.util.Log
-import androidx.databinding.ObservableField
-import java.util.*
+
+import com.ptech.example.bingo.util.Config.Companion.BINGO_CHART_SIZE
+import com.ptech.example.bingo.util.Config.Companion.BINGO_HIGHEST_LIMIT
 import javax.inject.Inject
 import kotlin.random.Random
 
 class BingoChartData private constructor(){
 
-    val bingoSize = 5
 
-    val bingoMatrix =  IntArray(bingoSize*bingoSize){ Random.nextInt(100) }
+    ///TODO
+    val bingoMatrix =
+        IntArray(BINGO_CHART_SIZE * BINGO_CHART_SIZE) { Random.nextInt(BINGO_HIGHEST_LIMIT.toInt()) }
 
-    class BingoChartFactory @Inject constructor(){
+    class BingoChartFactory @Inject constructor() {
         fun newInstance() = BingoChartData()
     }
 }

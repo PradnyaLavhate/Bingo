@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class BingoChartAdapter @Inject constructor(): RecyclerView.Adapter<BingoChartViewHolder>() {
 
-    var numberList = mutableListOf<BingoChartItemVM>()
+    var bingoList = mutableListOf<BingoChartItemVM>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BingoChartViewHolder {
        return LayoutInflater
@@ -19,11 +19,11 @@ class BingoChartAdapter @Inject constructor(): RecyclerView.Adapter<BingoChartVi
     }
 
     override fun onBindViewHolder(holder: BingoChartViewHolder, position: Int) {
-        (holder).bind(numberList.get(position))
+        (holder).bind(bingoList.get(position))
     }
 
     override fun getItemCount(): Int {
-        return numberList.size
+        return bingoList.size
     }
 }
 

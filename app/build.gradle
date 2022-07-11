@@ -30,6 +30,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         dataBinding true
     }
@@ -49,6 +50,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     testImplementation "io.mockk:mockk:$mockitoVersion"
+
 
     //reactiveX
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"

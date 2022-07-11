@@ -1,6 +1,7 @@
 package com.ptech.example.bingo.util
 
 import com.ptech.example.bingo.di.BingoScope
+import com.ptech.example.bingo.util.Config.Companion.BINGO_HIGHEST_LIMIT
 import com.ptech.example.bingo.util.Config.Companion.BINGO_SET
 import com.ptech.example.bingo.util.Config.Companion.BINGO_TIMER
 import io.reactivex.Completable
@@ -19,7 +20,7 @@ class BingoEventManager @Inject constructor() {
             .intervalRange(0L, BINGO_SET, 0, BINGO_TIMER, TimeUnit.SECONDS)
             .doOnComplete{ }
             .subscribe {
-                publishSubject.onNext(Random.nextLong(100))
+                publishSubject.onNext(Random.nextLong(BINGO_HIGHEST_LIMIT))
             }
     }
 
