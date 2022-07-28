@@ -54,15 +54,11 @@ class HeaderViewModel @Inject constructor(
         }
 
     private fun getSorryDialogListener() =
-        DialogInterface.OnClickListener { p0, p1 -> onClickOfSorryDialog() }
+        DialogInterface.OnClickListener { p0, p1 -> onClickOfSorryDialog().also { p0.dismiss() } }
 
     private fun onClickOfSorryDialog() {
         isStartButtonEnabled.set(true)
-        resetBingoChart()
-    }
-
-    private fun resetBingoChart() {
-
+        bingoEventManager.resetBingoChart()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

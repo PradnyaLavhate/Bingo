@@ -52,6 +52,13 @@ class BingoChartViewModel @Inject constructor(
             }.let(compositeDisposable::add)
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun listenToResetEvent(){
+        bingoEventManager.getResetEvent().subscribe {
+            loadChartData()
+        }.let(compositeDisposable::add)
+    }
+
     private fun updateBingoChartAdapter(currentBingo: Long) {
         bingoChartAdapter.bingoList.find {
             it.element.get().toLong() == currentBingo
