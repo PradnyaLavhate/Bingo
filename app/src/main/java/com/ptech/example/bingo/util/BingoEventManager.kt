@@ -15,7 +15,7 @@ import kotlin.random.Random
 @BingoScope
 class BingoEventManager @Inject constructor() {
 
-    fun startEvents(): Disposable? {
+    fun startBingoEvents(): Disposable? {
         return Observable
             .intervalRange(0L, BINGO_SET, 0, BINGO_TIMER, TimeUnit.SECONDS)
             .doOnComplete{

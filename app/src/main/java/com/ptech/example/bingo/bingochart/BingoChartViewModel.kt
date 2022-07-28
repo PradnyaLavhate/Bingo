@@ -25,13 +25,14 @@ class BingoChartViewModel @Inject constructor(
 
 
     private val TAG: String = "BingoChart"
-    var bingoChart: BingoChartData = bingoChartFactory.newInstance()
+
 
     private val compositeDisposable = CompositeDisposable()
 
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadChartData() {
+        var bingoChart: BingoChartData = bingoChartFactory.newInstance()
         bingoChartAdapter.bingoList = bingoChart.bingoMatrix
             .map { BingoChartItemVM().apply { element.set(it) } }
                 as MutableList<BingoChartItemVM>

@@ -18,12 +18,6 @@ class HeaderFragment : Fragment() {
     @Inject
     lateinit var viewModel: HeaderViewModel
 
-    private fun initializeDependencies() {
-        this.context
-            ?.let { AppComponent.getApplication(it).component }
-            ?.injectDataFor(this)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +34,13 @@ class HeaderFragment : Fragment() {
     override fun onAttach(context: Context) {
         initializeDependencies()
         super.onAttach(context)
+    }
+
+
+    private fun initializeDependencies() {
+        this.context
+            ?.let { AppComponent.getApplication(it).component }
+            ?.injectDataFor(this)
     }
 
 }

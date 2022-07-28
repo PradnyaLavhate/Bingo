@@ -11,35 +11,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content">
-
-        <!-- TODO: Update blank fragment layout -->
-
-        <TextView
-            android:text="Test"
-            android:id="@+id/textview_1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/gridLayout_bingo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gridLayout_bingo"
-            android:layout_margin="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_1"
             android:layout_width="match_parent"
-            android:adapter="@{bingoChartViewModel.bingoChartAdapter}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="5"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_bingo_chart_element"
+            android:layout_margin="15dp"
+            android:adapter="@{bingoChartViewModel.bingoChartAdapter}"
             android:isScrollContainer="false"
-            tools:itemCount="5"/>
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="5"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_bingo_chart_element" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
