@@ -1,6 +1,7 @@
 package com.ptech.example.bingo.bingochart
 
 
+import android.content.DialogInterface
 import android.util.Log
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Lifecycle
@@ -9,6 +10,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import com.ptech.example.bingo.util.BingoEventManager
 import com.ptech.example.bingo.adapter.BingoChartAdapter
+import com.ptech.example.bingo.provider.AlertDialogProvider
 import com.ptech.example.bingo.util.Config.Companion.BINGO_CHART_SIZE
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -17,7 +19,8 @@ import javax.inject.Inject
 class BingoChartViewModel @Inject constructor(
     private val bingoChartFactory: BingoChartData.BingoChartFactory,
     private val bingoEventManager: BingoEventManager,
-    val bingoChartAdapter: BingoChartAdapter
+    val bingoChartAdapter: BingoChartAdapter,
+    private val alertDialogProvider: AlertDialogProvider
 ) : ViewModel(), LifecycleObserver {
 
 
@@ -67,7 +70,16 @@ class BingoChartViewModel @Inject constructor(
     }
 
     private fun showBingoAlert() {
+        alertDialogProvider.run {
+            val dialog = getCongratulationDialog().apply {
+                primaryBtnListener = object : DialogInterface.OnClickListener {
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
 
+                    }
+                }
+            }
+            showAlertDialog(dialog)
+        }
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)

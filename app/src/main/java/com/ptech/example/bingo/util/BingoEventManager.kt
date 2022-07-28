@@ -18,7 +18,12 @@ class BingoEventManager @Inject constructor() {
     fun startEvents(): Disposable? {
         return Observable
             .intervalRange(0L, BINGO_SET, 0, BINGO_TIMER, TimeUnit.SECONDS)
-            .doOnComplete{ }
+            .doOnComplete{
+                bingoCompleteEvent.onNext(true)
+            }
+            .doOnError {
+                bingoCompleteEvent.onNext(false)
+            }
             .subscribe {
                 publishSubject.onNext(Random.nextLong(BINGO_HIGHEST_LIMIT))
             }
@@ -29,6 +34,9 @@ class BingoEventManager @Inject constructor() {
     fun getEventPublisher(): Observable<Long> = publishSubject.hide()
 
 
+    private val bingoCompleteEvent = PublishSubject.create<Boolean>()
+
+    fun getBingoCompleteEvent () = bingoCompleteEvent.hide()
 
 }
 
