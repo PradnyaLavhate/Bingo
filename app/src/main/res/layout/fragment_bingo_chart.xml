@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:layout_marginTop="16dp"
             android:adapter="@{bingoChartViewModel.bingoChartAdapter}"
             android:isScrollContainer="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -26,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="5"
             tools:itemCount="5"
-            tools:listitem="@layout/item_bingo_chart_element" />
+            tools:listitem="@layout/item_bingo_chart_element"
+            tools:spanCount="4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
